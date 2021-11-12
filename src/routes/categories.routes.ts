@@ -4,6 +4,11 @@ const router = Router();
 
 const categories = [];
 
+
+
+
+
+
 router.post("/categories", (req, res) => {
 
     const { name,description } = req.body;
