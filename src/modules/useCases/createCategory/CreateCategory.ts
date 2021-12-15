@@ -3,6 +3,7 @@ import {  CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 class CreateCategoryControler {
     constructor(private createCategoryUseCase: CreateCategoryUseCase){}
+    
 
     handle(req: Request, res: Response) {
         const { name, description } = req.body;
