@@ -1,6 +1,5 @@
 
-import { ICategoryRepository } from "../../cars/repositories/implemetantions/ICategoriesRepository";
-
+import { ICategoryRepository } from '../../../repositories/implemetantions/ICategoriesRepository';
 interface IRequest{
     name: string;
     description:string;
