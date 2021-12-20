@@ -9,7 +9,7 @@ interface IImportCategory {
 class ImportCategoryUseCase {
     constructor(private iCategoriesRepository: ICategoryRepository) {}
 
-    loadCategories(file: Express.Multer.File):Promisse<IImportCategory[]> {
+    loadCategories(file: Express.Multer.File):Promise<IImportCategory[]> {
         return new Promise((res, rej) => {
             const stream = fs.createReadStream(file.path);
             const categories: IImportCategory[] = [];
@@ -37,7 +37,11 @@ class ImportCategoryUseCase {
 
     async execute(file: Express.Multer.File): Promise<void> {
         const categories = await this.loadCategories(file);
-        console.log(categories);
+        categories.map((category) =>{
+            const {name, description}= category;
+
+            const existCategory = this.iCategoriesRepository.findByName(name);
+        })
     }
 }
 
