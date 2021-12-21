@@ -1,6 +1,21 @@
 version: "3.7"
 
 services:
+    database:
+        image: postgres:9.6
+        container_name: database
+        restart: always
+        ports:
+            - "5432:5432"
+        environment:
+            - POSTGRES_USER=docker
+            - POSTGRES_PASSWORD=ignite
+            - POSTGRES_DB=probable
+        volumes:
+            -  pgdata:/data/postgres
+        network_mode: host
+
+
     app:
         build: .
         container_name: probable
@@ -8,3 +23,8 @@ services:
             - "3333:3333"
         volumes:
             - .:/usr/app
+        network_mode: host
+
+volumes:
+    pgdata:
+        driver: local
