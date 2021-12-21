@@ -2,6 +2,10 @@ import express from "express";
 import { router } from "./routes";
 import { categoriesRouter } from "./routes/categories.routes";
 import { specificationRouter } from "./routes/specification.routes";
+
+import  "./database";
+
+
 const app = express();
 app.use(express.json());
 app.use(router);
