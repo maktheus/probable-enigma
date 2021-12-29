@@ -1,14 +1,16 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe"; 
 import {  CreateCategoryUseCase } from "./CreateCategoryUseCase";
 
 class CreateCategoryControler {
-    constructor(private createCategoryUseCase: CreateCategoryUseCase){}
     
 
     async handle(req: Request, res: Response) {
         const { name, description } = req.body;
         
-        await this.createCategoryUseCase.execute({ name, description });
+        const createCategoryUseCase = container.resolve(CreateCategoryUseCase)
+
+        await createCategoryUseCase.execute({ name, description });
 
         return res.status(201).send({
             message: "Categoria cadastrada com sucesso",
